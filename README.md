@@ -48,8 +48,24 @@ Ensure you have the necessary tools installed for the specific agents you want t
 AI-Agents/
 ├── README.md          # This file
 ├── LICENSE            # MIT License
+├── AI-Agent-Rules/    # Submodule with agent rule definitions
 └── ...                # Agent implementations (coming soon)
 ```
+
+## 🏷️ Topics
+
+This repository covers the following areas:
+
+**Core Focus:**
+`ai-agents` `artificial-intelligence` `automation` `developer-tools` `productivity` `workflow-automation`
+
+**Technologies:**
+`flutter` `android` `github-actions` `ci-cd` `git` `docker` `nestjs` `react` `homebrew`
+
+**Categories:**
+`devops` `open-source` `llm` `agent-rules`
+
+> **Note:** To add these topics to the GitHub repository, go to the repository's main page, click on the gear icon ⚙️ next to "About", and add the topics listed above in the "Topics" field.
 
 ## 🤝 Contributing
 
