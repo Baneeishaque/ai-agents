@@ -14,9 +14,9 @@ Reword a git commit using a fully automated, non-interactive git rebase process 
 
 4. **Create and verify backup tag** - Execute `TAG_NAME=backup-before-reword-$(date +%s)` to store tag name, then `git tag "$TAG_NAME"` to create tag, then verify with `git rev-parse "$TAG_NAME"` matches `git rev-parse HEAD`
 
-5. **Start non-interactive rebase** - Run `GIT_SEQUENCE_EDITOR="sed -i '' 's/^pick <commit-hash>/reword <commit-hash>/'" git rebase -i <commit-hash>^` to automatically change "pick" to "reword" in the todo list; handle potential swap file errors if detected
+5. **Start non-interactive rebase** - Run `GIT_SEQUENCE_EDITOR="sed -i '' 's/^pick <commit-hash>/reword <commit-hash>/'" GIT_EDITOR=true git rebase -i <commit-hash>^` to automatically change "pick" to "reword" and skip the editor pause (GIT_EDITOR=true makes git use /bin/true which exits immediately)
 
-6. **Complete rebase with new message** - Execute `git commit --amend -m "<proper commit message>"` to set the new commit message, then `git rebase --continue` to finish rebase
+6. **Complete rebase with new message** - Execute `git commit --amend -m "<proper commit message>"` to set the new commit message without opening editor
 
 7. **Verify rebase success** - Run `git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5` to confirm commit message changed and verify new commit hashes
 
@@ -50,6 +50,7 @@ Reword a git commit using a fully automated, non-interactive git rebase process 
 
 ### Notes
 
+- **Fully automated rebase:** Setting `GIT_EDITOR=true` uses `/bin/true` (a command that does nothing and exits with success) as the editor, preventing git from pausing and waiting for user input when reword is triggered
 - **git lg alias:** This repository has `git lg` configured as an alias for the pretty-formatted log command used in verification steps
 - **Git LFS:** This is NOT optional for all repositories; this specific repository requires it due to 5 PDF files tracked by LFS and hooks that enforce its presence
 - **Swap files:** Created in `.git/rebase-merge/` during interactive rebase; safe to delete only when no active rebase is in progress
