@@ -1,0 +1,20 @@
+# Conan configuration for git-reword-commit-cli
+# This file can be used for simpler dependency management
+
+[requires]
+# No external dependencies required for core functionality
+# Add dependencies here if needed, for example:
+# fmt/9.1.0
+# CLI11/2.3.2
+
+[generators]
+CMakeToolchain
+CMakeDeps
+
+[options]
+# Default options
+shared=False
+fPIC=True
+
+[layout]
+cmake_layout

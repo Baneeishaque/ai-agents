@@ -113,3 +113,97 @@ $RECYCLE.BIN/
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+### C++ ###
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+### CMake ###
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+build/
+build-*/
+out/
+
+### Conan ###
+conanbuildinfo.cmake
+conanbuildinfo.txt
+conan_toolchain.cmake
+conan.lock
+graph_info.json
+conaninfo.txt
+
+### Meson ###
+build-meson/
+subprojects/
+
+### Package ###
+package/
+*.zip
+*.tar.gz
+*.deb
+*.rpm
+
+### IDE User Files ###
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/*.iws
+*.swp
+*~
+
+### Python ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+eggs/
+.eggs/
+*.egg
+.Python
+develop-eggs/
+.installed.cfg
+*.so
+
+### Dart ###
+.dart_tool/
+.packages
+pubspec.lock
+
