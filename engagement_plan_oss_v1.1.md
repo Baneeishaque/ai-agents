@@ -1,7 +1,7 @@
 # Strategic Engagement Plan: Technical Authority & Open Source Advocacy
 
-**Version:** 1.1
-**Owner:** Senior Technical Lead (12+ Years Experience)
+**Version:** 1.1  
+**Owner:** Senior Technical Lead (12+ Years Experience)  
 **Objective:** To leverage deep industry experience to guide content creators toward Open Source tools, educate the developer community on production realities, and actively build a stronger ecosystem around lightweight, transparent technologies.
 
 ---
