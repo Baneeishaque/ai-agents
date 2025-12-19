@@ -1,0 +1,53 @@
+parameters:
+- name: jdkVersion
+  type: string
+  default: '21'
+
+steps:
+  - checkout: self
+    submodules: recursive
+
+  - task: Cache@2.198.0
+    inputs:
+      key: 'gradle | "$(Agent.OS)"'
+      restoreKeys: gradle
+      path: $(GRADLE_USER_HOME)
+    displayName: Gradle Build Cache
+
+  - task: JavaToolInstaller@0
+    inputs:
+      versionSpec: ${{ parameters.jdkVersion }}
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
+
+  - script: |
+      sed -i "s|https://nomadller.in/http_api/|https://baneeishaque.helioho.st/GitHub_Banee-Ishaque_Account-Ledger-Server-PHP/http_API/|" account-ledger-lib/account-ledger-lib/src/main/kotlin/account/ledger/library/api/ApiConstants.kt
+    displayName: "Inject secret serverApiAddress"
+
+  - task: Gradle@3.208.0
+    displayName: 'Gradle Build : Tar Distribution'
+    inputs:
+      gradleOptions: '-Xmx3072m'
+      tasks: distTar
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd cli-app/build/distributions
+        tar -xvf cli-app.tar
+        mv cli-app Account-Ledger-Cli
+        cd Account-Ledger-Cli/bin
+        mv cli-app Account-Ledger-Cli
+        chmod a+x Account-Ledger-Cli
+        mv cli-app.bat Account-Ledger-Cli.bat
+        echo -e "[tools]\njava = \"23.0.1\"" > mise.toml
+        cd ../..
+        tar -czvf Account-Ledger-Cli.tar.gz Account-Ledger-Cli
+    displayName: Rebuilding Tar Distribution
+
+  - publish: cli-app/build/distributions/Account-Ledger-Cli.tar.gz
+    artifact: Account-Ledger-CLI
+
+  - script: './gradlew --stop'
+    displayName: Stop Gradle Daemon
