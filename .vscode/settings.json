@@ -19,6 +19,7 @@
         "jacoco",
         "lintrc",
         "ludeeus",
+        "markdownlint",
         "mpeltonen",
         "msix",
         "parseable",
