@@ -2,8 +2,12 @@
     "cSpell.words": [
         "actionlint",
         "apdisk",
+        "assemblyscript",
         "backgrounded",
+        "backgrounding",
         "Baneeishaque",
+        "changetype",
+        "ciphertext",
         "CODEOWNERS",
         "CPPFLAGS",
         "craco",
@@ -36,6 +40,7 @@
         "parseable",
         "Pathing",
         "pdftohtml",
+        "Pedogogical",
         "piggybacked",
         "Polyrepo",
         "Poppler",
@@ -46,6 +51,7 @@
         "reviewdog",
         "rollouts",
         "Rulebook",
+        "rxdb",
         "sandboxing",
         "scandir",
         "Setext",
@@ -61,6 +67,7 @@
         "toptal",
         "unstaging",
         "unvetted",
+        "webassembly",
         "willynohilly"
     ]
 }
