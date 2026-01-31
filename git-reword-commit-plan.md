@@ -12,31 +12,37 @@ Reword a git commit using a fully automated, non-interactive git rebase process 
 
 ### Main Steps
 
-4. **Draft new commit message** - Inspect the commit using `git show <commit-hash>` and prepare a new message compliant with `AI-Agent-Rules/Git-Commit-Message-rules.md` and `AI-Agent-Rules/Git-Submodule-rules.md`
+1. **Draft new commit message** - Inspect the commit using `git show <commit-hash>` and prepare a new message compliant with:
+    - [git-commit-message-rules.md](./ai-agent-rules/git-commit-message-rules.md) (Standard formatting)
+    - [git-atomic-commit-construction-rules.md](./ai-agent-rules/git-atomic-commit-construction-rules.md) (Rationale documentation)
+    - **Dig Down Principle**: If the commit involves binary or encoded files, use `cat -v` or similar to verify the payload before drafting.
 
-5. **Create and verify backup tag** - Execute `TAG_NAME=backup-before-reword-$(date +%s)` to store tag name, then `git tag "$TAG_NAME"` to create tag, then verify with `git rev-parse "$TAG_NAME"` matches `git rev-parse HEAD`
+2. **Create and verify backup tag** - Execute `TAG_NAME=backup-before-reword-$(date +%s)` to store tag name, then `git tag "$TAG_NAME"` to create tag, then verify with `git rev-parse "$TAG_NAME"` matches `git rev-parse HEAD`
 
-6.  **Start non-interactive rebase** - Run `GIT_SEQUENCE_EDITOR="sed -i '' 's/^pick <commit-hash>/edit <commit-hash>/'" git rebase -i <commit-hash>^` to automatically change "pick" to "edit" in the todo list; this stops rebase at the target commit without opening an editor
+3. **Start non-interactive rebase** - Run `GIT_SEQUENCE_EDITOR="sed -i '' 's/^pick <commit-hash>/edit <commit-hash>/'" git rebase -i <commit-hash>^` to automatically change "pick" to "edit" in the todo list; this stops rebase at the target commit without opening an editor
 
-7. **Complete rebase with new message** - Execute `git commit --amend -m "<proper commit message>"` to set the new commit message, then `git rebase --continue` to finish rebase
+4. **Complete rebase with new message** - Execute `git commit --amend -m "<proper commit message>"` to set the new commit message, then `git rebase --continue` to finish rebase
 
-8. **Verify rebase success** - Run `git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5` to confirm commit message changed and verify new commit hashes
+5. **Verify rebase success** - Run `git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5` to confirm commit message changed and verify new commit hashes
 
-9. **Clean up backup tag** - After confirming success, delete the backup tag with `git tag -d "$TAG_NAME"`
+6. **Clean up backup tag** - After confirming success, delete the backup tag with `git tag -d "$TAG_NAME"` and run `git gc --prune=now` to clean up unreachable objects.
 
 ### Error Handling
 
 **If Git LFS not installed:**
+
 - **Impact:** Repository has PDF files tracked by LFS; hooks will fail during rebase
 - **Action:** Install Git LFS before proceeding, or accept that rebase will abort with "git-lfs was not found on your path" error
 - **Note:** Git LFS is **required** for this repository due to configured hooks and tracked LFS objects
 
 **If "swap file already exists" error:**
+
 - **Check:** Run `git status` to see if rebase is actually in progress
 - **If no active rebase:** Safely delete `.git/rebase-merge/` directory and restart
 - **If active rebase:** Abort with `git rebase --abort` and investigate concurrent git processes
 
 **If rebase initiation fails:**
+
 - **Action:** Check error message; if LFS-related, verify `command -v git-lfs` succeeds
 - **Cleanup:** Run `git rebase --abort` to clean up any partial state
 
@@ -55,21 +61,26 @@ Reword a git commit using a fully automated, non-interactive git rebase process 
 When the `main` branch history is rewritten (e.g., via rebase/reword), feature branches based on the old history must be carefully rebased onto the new `main`.
 
 #### 1. Identification & Analysis
+
 Identify all remote branches that contain the old, now-rewritten commits.
+
 ```bash
 # Find branches containing the old commit hash (before rewrite)
 git branch -r --contains <old-commit-hash>
 ```
 
 For each identified branch, analyze its divergence:
+
 - **Find Merge Base:** `git merge-base <branch> <old-main-tip>`
 - **List Unique Commits:** `git log <branch> ^<old-main-tip> --oneline`
 - **Verify Divergence:** Ensure the branch actually stems from the old history and not an unrelated point.
 
 #### 2. User Confirmation Loop
+
 **CRITICAL:** Do not batch process. Present each branch individually to the user for confirmation.
 
 **Presentation Format:**
+
 - **Branch Name:** `origin/feature/branch-name`
 - **Divergence Point:** Commit hash and message where it split from old master.
 - **Commits to Replay:** List of unique commits on the feature branch that need to be moved.
@@ -78,29 +89,38 @@ For each identified branch, analyze its divergence:
 **Action:** Ask: *"Do you want to proceed with rebasing this branch?"*
 
 #### 3. Sequential Execution
+
 If confirmed, perform the following steps for the branch:
 
-1.  **Checkout & Track:**
+1. **Checkout & Track:**
+
     ```bash
     git checkout -b <local-branch-name> origin/<remote-branch-name>
     ```
-2.  **Rebase onto New Main:**
+
+2. **Rebase onto New Main:**
+
     ```bash
     git rebase main
     ```
+
     *Note: Git is usually smart enough to skip commits that were already applied (the ones we reworded), but watch for conflicts.*
-3.  **Force Push:**
+3. **Force Push:**
+
     ```bash
     git push origin <local-branch-name> --force
     ```
-4.  **Cleanup:**
+
+4. **Cleanup:**
     Delete the local temporary branch to keep the workspace clean.
+
     ```bash
     git checkout main
     git branch -D <local-branch-name>
     ```
 
 #### 4. Final Verification
+
 After processing all branches, verify the remote state to ensure all feature branches are now compatible with the new `main` tip.
 
 ### Notes
