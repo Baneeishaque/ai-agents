@@ -10,7 +10,7 @@ Follow this workflow for complex, multi-branch Git rebases to ensure history int
 
 1. Identify all branches in the chain (`git branch -a`).
 2. Create a Mermaid graph of current vs. target hierarchy.
-3. Reference: [Git Rebase Standardization Rules](file:///Users/dk/Lab_Data/ai-agents/ai-agent-rules/git-rebase-standardization-rules.md).
+3. Reference: [Git Rebase Standardization Rules](../../ai-agent-rules/git-rebase-standardization-rules.md).
 
 ## 2. Commit Action Mapping (CAM)
 

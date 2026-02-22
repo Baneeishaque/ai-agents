@@ -1,0 +1,32 @@
+{
+    // MD033: Inline HTML
+    // Allowed for layout (div), badging (img), and semantic wrappers (details/summary).
+    "MD033": {
+        "allowed_elements": [
+            "div",
+            "span",
+            "details",
+            "summary",
+            "img",
+            "br"
+        ]
+    },
+    // MD013: Line Length
+    // Set to 120 characters per "Markdown Generation Rules".
+    // Code blocks and tables are excluded to prevent functional breakage.
+    "MD013": {
+        "line_length": 120,
+        "code_blocks": false,
+        "tables": false
+    },
+    // MD007: Unordered List Indentation
+    // Set to 4 spaces for better readability and nesting clarity.
+    "MD007": {
+        "indent": 4
+    },
+    // MD046: Code Block Style
+    // Enforce fenced code blocks (```) over indented blocks for consistency.
+    "MD046": {
+        "style": "fenced"
+    }
+}

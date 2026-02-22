@@ -1,0 +1,4 @@
+**/node_modules
+.git
+
+ai-agent-rules/architectures/sync/samples/cra-project/build
