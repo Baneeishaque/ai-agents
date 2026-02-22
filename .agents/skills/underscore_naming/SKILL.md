@@ -129,6 +129,40 @@ git mv path/to/old-file.ext path/to/old_file.ext
 **Ordering rule:** If renaming both a directory and files inside it,
 rename the directory first (Git tracks the content, not the path).
 
+#### Fallback — Locked Directories
+
+If the directory cannot be renamed because it is locked by VS Code,
+OneDrive, or another process, use the **mirror-and-remove** strategy:
+
+1. **Remove from VS Code workspace** — if the directory is a workspace
+   root folder, remove it first to release file watchers:
+   - **File → Remove Folder from Workspace**, or
+   - Run VS Code command: `workbench.action.removeRootFolder`
+2. **Mirror** the directory to the new name:
+   ```powershell
+   robocopy "path/to/old-name" "path/to/old_name" /MIR /R:1 /W:1
+   ```
+3. **Verify** the new directory has identical contents.
+4. **Remove contents** of the old directory:
+   ```powershell
+   Get-ChildItem "path/to/old-name" -Recurse -Force -File |
+       Remove-Item -Force -ErrorAction SilentlyContinue
+   Get-ChildItem "path/to/old-name" -Recurse -Force -Directory |
+       Sort-Object { $_.FullName.Length } -Descending |
+       Remove-Item -Force -ErrorAction SilentlyContinue
+   ```
+5. **Delete the empty shell** — if still locked, instruct the user to
+   close VS Code and run manually:
+   ```powershell
+   rmdir "path/to/old-name"
+   ```
+6. **Re-add to workspace** — if the directory was a VS Code workspace
+   folder, remind the user to re-add the renamed folder via
+   **File → Add Folder to Workspace…** or:
+   ```powershell
+   code --add "path/to/old_name"
+   ```
+
 ### Step 5 — Update All Cross-References
 
 Using the blast radius from Step 3, update every reference to the old
@@ -204,3 +238,5 @@ The agent is **BLOCKED** from:
 | Documentation links broken after rename | Run blast radius search on the **new** name after rename to verify link targets exist |
 | Renamed a tool-mandated filename | Check the Exemptions table first — some hyphens are mandatory |
 | `ai-agent-rules/` files renamed to underscores | These files follow kebab-case per their own standardization rules — exempt |
+| Directory locked by VS Code / OneDrive | Use `robocopy /MIR` fallback: mirror → remove contents → user deletes empty shell after closing VS Code |
+| Renamed folder disappeared from VS Code workspace | After renaming a workspace root folder, re-add it via **File → Add Folder to Workspace…** or `code --add` |
