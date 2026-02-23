@@ -8,6 +8,7 @@
 | Maven POM Audit | [`.agents/skills/maven_pom_audit/SKILL.md`](.agents/skills/maven_pom_audit/SKILL.md) | User asks to audit pom.xml, or invalid URLs/developer identity detected |
 | Project Structure & Documentation | [`.agents/skills/project_structure/SKILL.md`](.agents/skills/project_structure/SKILL.md) | User asks to organize project, fix folder structure, or create README/AGENTS.md |
 | Deleted Files Audit | [`.agents/skills/deleted_files_audit/SKILL.md`](.agents/skills/deleted_files_audit/SKILL.md) | User deletes files and asks to verify, or `git status` shows pending deletions |
+| LOC Analysis | [`.agents/skills/loc_analysis/SKILL.md`](.agents/skills/loc_analysis/SKILL.md) | User asks to calculate LOC, measure code changes, or quantify a feature's footprint |
 
 ## Conventions
 
