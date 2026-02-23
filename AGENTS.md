@@ -7,6 +7,7 @@
 | Underscore Naming Convention | [`.agents/skills/underscore_naming/SKILL.md`](.agents/skills/underscore_naming/SKILL.md) | User asks to enforce underscore naming, or files/dirs with hyphens are detected |
 | Maven POM Audit | [`.agents/skills/maven_pom_audit/SKILL.md`](.agents/skills/maven_pom_audit/SKILL.md) | User asks to audit pom.xml, or invalid URLs/developer identity detected |
 | Project Structure & Documentation | [`.agents/skills/project_structure/SKILL.md`](.agents/skills/project_structure/SKILL.md) | User asks to organize project, fix folder structure, or create README/AGENTS.md |
+| Deleted Files Audit | [`.agents/skills/deleted_files_audit/SKILL.md`](.agents/skills/deleted_files_audit/SKILL.md) | User deletes files and asks to verify, or `git status` shows pending deletions |
 
 ## Conventions
 
