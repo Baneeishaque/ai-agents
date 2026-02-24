@@ -7,7 +7,7 @@ category: Naming & Conventions
 # Underscore Naming Convention Skill
 
 > **Skill ID:** `underscore_naming`
-> **Version:** 1.0.0
+> **Version:** 1.1.0
 > **Standard:** [Agent Skills (agentskills.io)](https://agentskills.io)
 
 ## Description
@@ -53,19 +53,64 @@ Do NOT apply when:
 Detect all files and directories whose names contain hyphens or other
 non-underscore separators.
 
+#### 1a — Identify Tracked Files (Source of Truth)
+
+Always start with `git ls-files` — this is the **authoritative list** of
+what the project actually tracks. Do NOT rely on `Get-ChildItem` alone,
+which includes git-ignored files and produces false positives.
+
+```powershell
+git ls-files
+```
+
+#### 1b — Read `.gitignore` Carefully
+
+Before classifying violations, read `.gitignore` to understand which
+files are tracked vs ignored. Pay special attention to **negation
+patterns** (`!`) that re-include specific files inside ignored directories:
+
+```gitignore
+# Example: directory is ignored, but .zip and .md files are tracked
+pevers/*
+!pevers/*.zip
+```
+
+In this case, `pevers/*.zip` files ARE tracked and MUST be audited,
+while everything else under `pevers/` is ignored and should be skipped.
+
+#### 1c — Scan Tracked Files for Hyphens
+
 **PowerShell:**
 ```powershell
-Get-ChildItem -Recurse | Where-Object {
+git ls-files | Where-Object { $_ -match '-' }
+```
+
+**Bash:**
+```bash
+git ls-files | grep '-'
+```
+
+Also scan for untracked directories with hyphens (these won't appear
+in `git ls-files` but still need renaming):
+
+```powershell
+Get-ChildItem -Directory -Recurse | Where-Object {
     $_.FullName -notmatch '\\(target|\.git|node_modules|dist|build)\\' -and
     $_.Name -match '-'
 } | ForEach-Object { $_.FullName }
 ```
 
-**Bash:**
-```bash
-find . -not -path '*/target/*' -not -path '*/.git/*' \
-       -not -path '*/node_modules/*' -name '*-*' | sort
-```
+#### 1d — Present Complete Inventory
+
+List **ALL tracked files** (not just violations) with their status.
+This gives the user full visibility and prevents missed items:
+
+| # | Tracked File | Has Hyphens? | Action |
+|---|---|---|---|
+| 1 | `.gitignore` | No | ✅ Exempt (industry-standard) |
+| 2 | `my-module/data.zip` | **Parent dir** | 🔄 Moves with parent rename |
+| 3 | `some-file.md` | **Yes** | 🔄 Rename |
+| … | … | … | … |
 
 ### Step 2 — Classify Exemptions
 
@@ -96,19 +141,25 @@ Before renaming anything, find **every reference** to the old name across
 the entire codebase. This prevents orphaned links, broken imports, and
 stale documentation.
 
+**Use `git ls-files` to search only tracked files** — this avoids false
+positives from git-ignored content:
+
 **PowerShell:**
 ```powershell
-Get-ChildItem -Recurse -File |
-    Where-Object { $_.FullName -notmatch '\\(target|\.git)\\' } |
-    Select-String -Pattern "old-name" |
-    Format-Table Filename, LineNumber, Line -AutoSize
+git ls-files | ForEach-Object {
+    Select-String -Path $_ -Pattern "old-name" -ErrorAction SilentlyContinue
+} | Format-Table Filename, LineNumber, Line -AutoSize
 ```
 
 **Bash:**
 ```bash
-grep -rn "old-name" --include='*' \
-    --exclude-dir='{target,.git,node_modules}' .
+git ls-files | xargs grep -n "old-name" 2>/dev/null
 ```
+
+**Critical target: `.gitignore`** — This file frequently references
+directory names in ignore/negation patterns. When renaming a directory,
+`.gitignore` rules referencing that directory MUST be updated or tracked
+files inside will become untracked (or vice versa).
 
 Document every match. This is the **blast radius** — every file in this
 list must be updated after the rename.
@@ -127,7 +178,23 @@ git mv path/to/old-file.ext path/to/old_file.ext
 ```
 
 **Ordering rule:** If renaming both a directory and files inside it,
-rename the directory first (Git tracks the content, not the path).
+rename the **files first**, then the directory. This ensures `git mv`
+can locate the files at their current paths.
+
+#### Fallback — Empty Directories
+
+`git mv` fails on empty directories (`fatal: source directory is empty`).
+Use `Rename-Item` (PowerShell) or `mv` (Bash) instead:
+
+```powershell
+Rename-Item -Path "path/to/old-name" -NewName "old_name"
+```
+
+```bash
+mv path/to/old-name path/to/old_name
+```
+
+Empty directories are not tracked by Git, so no history is lost.
 
 #### Fallback — Locked Directories
 
@@ -168,6 +235,7 @@ OneDrive, or another process, use the **mirror-and-remove** strategy:
 Using the blast radius from Step 3, update every reference to the old
 name in all affected files:
 
+- **`.gitignore` / `.gitattributes`**: Directory ignore patterns and negation rules — **critical**, or tracked files become untracked
 - **Documentation** (`.md` files): Links, titles, inline references
 - **Build configs** (`pom.xml`, `build.gradle`, `package.json`): Artifact IDs, module names
 - **CI/CD** (`azure-pipelines.yml`, `.github/workflows/`): Artifact references, paths
@@ -185,13 +253,26 @@ name remain:
 
 **PowerShell:**
 ```powershell
-Get-ChildItem -Recurse -File |
-    Where-Object { $_.FullName -notmatch '\\(target|\.git)\\' } |
-    Select-String -Pattern "old-name" |
-    Format-Table Filename, LineNumber, Line -AutoSize
+git ls-files | ForEach-Object {
+    Select-String -Path $_ -Pattern "old-name" -ErrorAction SilentlyContinue
+} | Format-Table Filename, LineNumber, Line -AutoSize
+```
+
+**Bash:**
+```bash
+git ls-files | xargs grep -n "old-name" 2>/dev/null
 ```
 
 **Expected result:** No output. If matches appear, return to Step 5.
+
+Also verify the final tracked file list is fully compliant:
+
+```powershell
+git ls-files | Where-Object { $_ -match '-' }
+```
+
+**Expected result:** Only industry-standard exempt names (e.g.,
+`azure-pipelines.yml`). Author-chosen names must have zero hyphens.
 
 **Exception:** The workspace folder name itself (e.g., `my-project`
 as a parent directory) is NOT a violation — it exists outside the project's
@@ -240,3 +321,8 @@ The agent is **BLOCKED** from:
 | `ai-agent-rules/` files renamed to underscores | These files follow kebab-case per their own standardization rules — exempt |
 | Directory locked by VS Code / OneDrive | Use `robocopy /MIR` fallback: mirror → remove contents → user deletes empty shell after closing VS Code |
 | Renamed folder disappeared from VS Code workspace | After renaming a workspace root folder, re-add it via **File → Add Folder to Workspace…** or `code --add` |
+| Scanned with `Get-ChildItem` and got false positives | Use `git ls-files` as the source of truth — it shows only tracked files, skipping git-ignored content |
+| Missed `.gitignore` references to renamed directory | `.gitignore` patterns referencing old directory names MUST be updated — otherwise tracked files become untracked |
+| `.gitignore` negation patterns (`!`) missed | Read `.gitignore` carefully — `!dir/*.zip` means those zips ARE tracked even though `dir/*` is ignored |
+| `git mv` failed on empty directory | Empty dirs aren't tracked by Git — use `Rename-Item` (PowerShell) or `mv` (Bash) instead |
+| Only listed violations, not all tracked files | Present a **complete inventory** of ALL tracked files with their status — users need full visibility |
