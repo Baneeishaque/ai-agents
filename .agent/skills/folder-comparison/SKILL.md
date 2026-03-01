@@ -1,7 +1,7 @@
 ---
 name: folder-comparison
 description: Compare two directories for content-level consistency and structural identity.
-tools: [rclone, diff]
+tools: rclone, diff
 category: Data Management
 ---
 
