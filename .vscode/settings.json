@@ -1,3 +1,4 @@
 {
     "harper.workspaceDictPath": ".harper-dictionary.txt",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.vscode/mise-tools/python"
 }
