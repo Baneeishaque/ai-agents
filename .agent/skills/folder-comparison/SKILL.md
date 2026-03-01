@@ -14,7 +14,9 @@ content-level consistency, and structural identity, specifically handling macOS 
 
 This skill is the **Single Source of Truth** for directory comparison procedures. It adheres to the
 **Agent Skill Standard (v1.0)** as defined at **agentskills.io**. For underlying data integrity principles,
-see **[Data Integrity Rules](../../ai-agent-rules/ai-agent-planning-rules.md)**.
+see **[Data Integrity Rules](../../../ai-agent-rules/ai-agent-planning-rules.md)**.
+
+- **Setup Session**: [Setup Session Log](../../../docs/conversations/2026-02-21-folder-comparison-skill-setup.md)
 
 ## 1. Environment & Dependencies
 
