@@ -1,0 +1,7 @@
+coreutils
+pdftohtml
+poppler
+rclone
+ehthumbs
+foojay
+temurin

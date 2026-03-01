@@ -1,0 +1,119 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "dictionaries": [
+        "ai",
+        "ci-cd",
+        "shell",
+        "architecture",
+        "git",
+        "ide-extensions",
+        "linting",
+        "build-tools",
+        "project-specific",
+        "american-english",
+        "java-ecosystem",
+        "python-ecosystem",
+        "dart-flutter",
+        "markdown-specs",
+        "infrastructure",
+        "code-quality",
+        "binary-utilities",
+        "security-attributes",
+        "decentralization",
+        "apple-proprietary",
+        "mobile-hardware"
+    ],
+    "dictionaryDefinitions": [
+        {
+            "name": "ai",
+            "path": "./.cspell/ai.txt"
+        },
+        {
+            "name": "ci-cd",
+            "path": "./.cspell/ci-cd.txt"
+        },
+        {
+            "name": "shell",
+            "path": "./.cspell/shell.txt"
+        },
+        {
+            "name": "architecture",
+            "path": "./.cspell/architecture.txt"
+        },
+        {
+            "name": "git",
+            "path": "./.cspell/git.txt"
+        },
+        {
+            "name": "ide-extensions",
+            "path": "./.cspell/ide-extensions.txt"
+        },
+        {
+            "name": "linting",
+            "path": "./.cspell/linting.txt"
+        },
+        {
+            "name": "build-tools",
+            "path": "./.cspell/build-tools.txt"
+        },
+        {
+            "name": "project-specific",
+            "path": "./.cspell/project-specific.txt",
+            "addWords": true
+        },
+        {
+            "name": "american-english",
+            "path": "./.cspell/american-english.txt"
+        },
+        {
+            "name": "java-ecosystem",
+            "path": "./.cspell/java-ecosystem.txt"
+        },
+        {
+            "name": "python-ecosystem",
+            "path": "./.cspell/python-ecosystem.txt"
+        },
+        {
+            "name": "dart-flutter",
+            "path": "./.cspell/dart-flutter.txt"
+        },
+        {
+            "name": "markdown-specs",
+            "path": "./.cspell/markdown-specs.txt"
+        },
+        {
+            "name": "infrastructure",
+            "path": "./.cspell/infrastructure.txt"
+        },
+        {
+            "name": "code-quality",
+            "path": "./.cspell/code-quality.txt"
+        },
+        {
+            "name": "binary-utilities",
+            "path": "./.cspell/binary-utilities.txt"
+        },
+        {
+            "name": "security-attributes",
+            "path": "./.cspell/security-attributes.txt"
+        },
+        {
+            "name": "decentralization",
+            "path": "./.cspell/decentralization.txt"
+        },
+        {
+            "name": "apple-proprietary",
+            "path": "./.cspell/apple-proprietary.txt"
+        },
+        {
+            "name": "mobile-hardware",
+            "path": "./.cspell/mobile-hardware.txt"
+        }
+    ],
+    "words": [],
+    "ignorePaths": [
+        "**/node_modules/**",
+        "**/.git/**"
+    ]
+}

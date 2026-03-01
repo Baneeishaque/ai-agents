@@ -1,0 +1,8 @@
+dbnavigator
+eamodio
+ionide
+ludeeus
+mhutchie
+mpeltonen
+sonarlint
+subosito

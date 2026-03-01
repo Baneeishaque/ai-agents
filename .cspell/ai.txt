@@ -1,0 +1,5 @@
+Gemini
+ollama
+Firecrawl
+AgentQL
+agentic

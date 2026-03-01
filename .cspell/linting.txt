@@ -1,0 +1,7 @@
+actionlint
+linted
+linters
+lintrc
+markdownlint
+reviewdog
+shellcheck

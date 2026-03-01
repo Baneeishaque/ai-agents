@@ -1,0 +1,8 @@
+supabase
+onrender
+gdrive
+pulumi
+baas
+paas
+BaaS
+PaaS
