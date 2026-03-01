@@ -1,0 +1,35 @@
+# Build directories
+build/
+build-*/
+out/
+_codeql_build_dir/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# Conan
+conanbuildinfo.*
+conan_toolchain.cmake
+conan.lock
+graph_info.json
+conaninfo.txt
+
+# Meson
+.mesonpy/
+
+# IDE user files
+*.user
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/*.iws
+
+# Package output
+package/
+*.zip
+*.tar.gz

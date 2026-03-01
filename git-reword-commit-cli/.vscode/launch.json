@@ -1,0 +1,76 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: git-reword-commit",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/git-reword-commit",
+            "args": ["--help"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Debug: git-reword-commit (LLDB)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/git-reword-commit",
+            "args": ["--help"],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "CMake: Build"
+        },
+        {
+            "name": "Debug: git-reword-commit (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Debug/git-reword-commit.exe",
+            "args": ["--help"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "CMake: Build"
+        },
+        {
+            "name": "Debug: Reword Commit",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/git-reword-commit",
+            "args": [
+                "--verbose",
+                "${input:commitHash}",
+                "${input:newMessage}"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "CMake: Build"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "commitHash",
+            "type": "promptString",
+            "description": "Enter the commit hash to reword"
+        },
+        {
+            "id": "newMessage",
+            "type": "promptString",
+            "description": "Enter the new commit message"
+        }
+    ]
+}

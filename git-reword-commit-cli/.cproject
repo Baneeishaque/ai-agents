@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.1">
+			<storageModule buildSystemId="org.eclipse.cdt.cmake.core.cmakeBuildSystem" id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.1" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="ninja clean" id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.1" name="Debug" optionalBuildProperties="" parent="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration">
+					<folderInfo id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.1." name="/" resourcePath="">
+						<toolChain id="org.eclipse.cdt.cmake.core.cmakeToolChain.1" name="CMake Tool Chain" superClass="org.eclipse.cdt.cmake.core.cmakeToolChain">
+							<targetPlatform id="org.eclipse.cdt.cmake.core.cmakePlatform.1" name="" superClass="org.eclipse.cdt.cmake.core.cmakePlatform"/>
+							<builder id="org.eclipse.cdt.cmake.core.cmakeBuilder.1" name="CMake Builder" superClass="org.eclipse.cdt.cmake.core.cmakeBuilder"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.2">
+			<storageModule buildSystemId="org.eclipse.cdt.cmake.core.cmakeBuildSystem" id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.2" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="ninja clean" id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.2" name="Release" optionalBuildProperties="" parent="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration">
+					<folderInfo id="org.eclipse.cdt.cmake.core.cmakeBuildConfiguration.2." name="/" resourcePath="">
+						<toolChain id="org.eclipse.cdt.cmake.core.cmakeToolChain.2" name="CMake Tool Chain" superClass="org.eclipse.cdt.cmake.core.cmakeToolChain">
+							<targetPlatform id="org.eclipse.cdt.cmake.core.cmakePlatform.2" name="" superClass="org.eclipse.cdt.cmake.core.cmakePlatform"/>
+							<builder id="org.eclipse.cdt.cmake.core.cmakeBuilder.2" name="CMake Builder" superClass="org.eclipse.cdt.cmake.core.cmakeBuilder"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="git-reword-commit-cli.null.1" name="git-reword-commit-cli"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/git-reword-commit-cli"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/git-reword-commit-cli"/>
+		</configuration>
+	</storageModule>
+</cproject>
