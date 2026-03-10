@@ -1,0 +1,496 @@
+# Instincts generated from https://github.com/Baneeishaque/ai-agents
+# Generated: 2026-03-01T09:18:35.733Z
+# Version: 2.0
+
+---
+id: ai-agents-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: chore, docs, feat
+
+## Evidence
+
+- 106 commits analyzed
+- Detected conventional commit pattern
+- Examples: docs(submodule): sync ai-agent-rules  add rule indices for moltbridge, node-crypto-mcp, postman-mcp, and zero-data-loss-cloud-cleanup, feat(skills): add LOC analysis skill
+
+---
+id: ai-agents-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Commit Length
+
+## Action
+
+Write moderate-length commit messages (~50 characters)
+
+## Evidence
+
+- Average commit message length: 58 chars
+- Based on 106 commits
+
+---
+id: ai-agents-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: ai-agents-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: ai-agents-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: ai-agents-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~15x per month
+- Files: 
+
+---
+id: ai-agents-workflow-skill-creation
+trigger: "when doing skill creation"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Skill Creation
+
+## Action
+
+Follow the skill-creation workflow:
+1. Create SKILL.md with standardized format
+2. Add skill to AGENTS.md registry
+3. Include version, steps, prohibited behaviors
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~10x per month
+- Files: .agents/skills/{skill-name}/SKILL.md, AGENTS.md
+
+---
+id: ai-agents-workflow-submodule-sync
+trigger: "when doing submodule sync"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Submodule Sync
+
+## Action
+
+Follow the submodule-sync workflow:
+1. Update submodule pointer
+2. Sometimes update .vscode/settings.json dictionary
+3. Commit with descriptive message
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~15x per month
+- Files: ai-agent-rules, .vscode/settings.json
+
+---
+id: ai-agents-workflow-vscode-dictionary-update
+trigger: "when doing vscode dictionary update"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Vscode Dictionary Update
+
+## Action
+
+Follow the vscode-dictionary-update workflow:
+1. Add terms to cSpell.userWords in settings.json
+2. Commit dictionary updates
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~8x per month
+- Files: .vscode/settings.json
+
+---
+id: ai-agents-workflow-git-workflow-documentation
+trigger: "when doing git workflow documentation"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Git Workflow Documentation
+
+## Action
+
+Follow the git-workflow-documentation workflow:
+1. Create workflow markdown file
+2. Include step-by-step procedures
+3. Add safety protocols and verification steps
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: .agent/workflows/{workflow-name}.md, git-*.md files
+
+---
+id: ai-agents-workflow-leetcode-iteration
+trigger: "when doing leetcode iteration"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Leetcode Iteration
+
+## Action
+
+Follow the leetcode-iteration workflow:
+1. Create versioned solution file
+2. Iterate through versions (v3, v4, v5...v34)
+3. Create final consolidated version
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: leetcode_{problem}_math_wizard_v{N}.md, leetcode_math_wizard_final.md
+
+---
+id: ai-agents-workflow-engagement-plan-evolution
+trigger: "when doing engagement plan evolution"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Engagement Plan Evolution
+
+## Action
+
+Follow the engagement-plan-evolution workflow:
+1. Create versioned engagement plan
+2. Iterate through versions (v1.0 → v1.9)
+3. Add new capabilities and approaches
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: engagement_plan_oss_v{X.Y}_{feature}.md
+
+---
+id: ai-agents-workflow-azure-devops-documentation
+trigger: "when doing azure devops documentation"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Azure Devops Documentation
+
+## Action
+
+Follow the azure-devops-documentation workflow:
+1. Create task documentation
+2. Add implementation plan
+3. Include walkthrough steps
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: Azure-*.md, Azure-Pipelines-Consolidation/{task,implementation_plan,walkthrough}.md
+
+---
+id: ai-agents-conventional-commit-format
+trigger: "When making a commit"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Conventional Commit Format
+
+## Action
+
+Use conventional commit format with type(scope): description pattern
+
+## Evidence
+
+- All commits follow pattern like 'docs(submodule): sync ai-agent-rules'
+- Types include chore, docs, feat, build, config
+
+---
+id: ai-agents-snake-case-files
+trigger: "When creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Snake Case Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Files follow snake_case pattern
+- Python language preference
+
+---
+id: ai-agents-skill-md-creation
+trigger: "When creating a new AI agent skill"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Skill Md Creation
+
+## Action
+
+Create SKILL.md file in .agents/skills/{skill-name}/ with standardized format including version, steps, and prohibited behaviors
+
+## Evidence
+
+- skill-creation workflow frequency 10/month
+- Standardized SKILL.md format in .agents/skills/ directories
+
+---
+id: ai-agents-submodule-sync-commit
+trigger: "When updating ai-agent-rules submodule"
+confidence: 0.98
+domain: workflow
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Submodule Sync Commit
+
+## Action
+
+Commit with 'chore(submodule): sync' prefix and descriptive message
+
+## Evidence
+
+- submodule-sync workflow frequency 15/month
+- Commits like 'chore(submodule): sync rules pointer & refresh ide dictionary'
+
+---
+id: ai-agents-vscode-dictionary-update
+trigger: "When encountering new technical terms"
+confidence: 0.92
+domain: workflow
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Vscode Dictionary Update
+
+## Action
+
+Add terms to cSpell.userWords in .vscode/settings.json
+
+## Evidence
+
+- vscode-dictionary-update workflow frequency 8/month
+- Frequent updates to .vscode/settings.json
+
+---
+id: ai-agents-versioned-iteration
+trigger: "When working on iterative solutions"
+confidence: 0.89
+domain: workflow
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Versioned Iteration
+
+## Action
+
+Create versioned files with v{N} suffix and maintain version history
+
+## Evidence
+
+- leetcode_math_wizard_v{N}.md files with versions up to v34
+- engagement_plan_oss_v{X.Y} pattern
+
+---
+id: ai-agents-workflow-documentation
+trigger: "When documenting Git procedures"
+confidence: 0.87
+domain: workflow
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Workflow Documentation
+
+## Action
+
+Create markdown files in .agent/workflows/ with step-by-step procedures and safety protocols
+
+## Evidence
+
+- git-workflow-documentation pattern
+- Workflow files in .agent/workflows/
+
+---
+id: ai-agents-azure-structured-docs
+trigger: "When documenting Azure DevOps tasks"
+confidence: 0.78
+domain: workflow
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Azure Structured Docs
+
+## Action
+
+Create task.md, implementation_plan.md, and walkthrough.md in dedicated folders
+
+## Evidence
+
+- Azure-Pipelines-Consolidation structure
+- Multiple Azure-*.md files
+
+---
+id: ai-agents-camel-case-functions
+trigger: "When defining functions in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Camel Case Functions
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Naming conventions specify camelCase for functions
+- Python language context
+
+---
+id: ai-agents-pascal-case-classes
+trigger: "When defining classes in Python"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: Baneeishaque/ai-agents
+---
+
+# Ai Agents Pascal Case Classes
+
+## Action
+
+Use PascalCase naming convention
+
+## Evidence
+
+- Naming conventions specify PascalCase for classes
+- Python language context
+
